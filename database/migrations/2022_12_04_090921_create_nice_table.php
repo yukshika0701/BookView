@@ -15,8 +15,8 @@ class CreateNiceTable extends Migration
     {
         Schema::create('nice', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigIncrements('user_id');
-            $table->bigIncrements('review_id');
+            $table->integer('user_id');
+            $table->integer('review_id');
             $table->timestamps();
         });
     }
