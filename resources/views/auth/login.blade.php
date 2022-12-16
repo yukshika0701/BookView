@@ -20,7 +20,7 @@
                     </svg>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <!-- <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -49,7 +49,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
@@ -63,7 +63,7 @@
                             </div>
                         </div> -->
 
-                        <div class="d-flex justify-content-between mt-3">
+                        <!-- <div class="d-flex justify-content-between mt-3">
                             <div>
                                 <a href="{{ route('register') }}">
                                     <button type="button" class="btn btn-success">新規登録</button>
@@ -74,16 +74,41 @@
                                     <button type="submit" class="btn btn-success">ログイン</button>
                                 </a>   
                             </div>
-                            <div>
-                                <a href="">
-                                    <button type="button" class="btn btn-danger">管理者登録</button>
+                      </div>
+                        <div class="text-right">
+                            @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('パスワードを忘れた際') }}
+                                </a>
+                            @endif
+                        </div>
+                    </form> -->
+
+                    <div class="card-body">
+                        @if($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $message)
+                            <p>{{ $message }}</p>
+                            @endforeach
+                        </div>
+                        @endif
+                        <form action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="email">メールアドレス</label>
+                            <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">パスワード</label>
+                            <input type="password" class="form-control" id="password" name="password" />
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                        <div>
+                                <a href="{{ route('register') }}">
+                                    <button type="button" class="btn btn-success">新規登録</button>
                                 </a>                            
-                            </div>
-                            <div>
-                                <a href="">
-                                    <button type="submit" class="btn btn-danger">管理者ログイン</button>
-                                </a>                            
-                            </div>                        
+                        </div>
+                        <button type="submit" class="btn btn-success">ログイン</button>
                         </div>
                         <div class="text-right">
                             @if (Route::has('password.request'))
@@ -92,7 +117,9 @@
                                 </a>
                             @endif
                         </div>
-                    </form>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,14 +52,32 @@ use App\Http\Controllers\ArticleController;
 // Route::get('/application', function () {
 //     return view('application/application');
 // });
-// Route::get('/approval', function () {
-//     return view('approval/approval');
-// });
 
 Auth::routes();
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset/{token}', 'Auth\ResetPasswordController@reset');
 
-Route::resource('articles', 'ArticleController');
 
-Route::get('/', [ArticleController::class, 'index'])->name('home');
-Route::get('/reviewall/{book}',[ArticleController::class, 'show'])->name('reviewall');
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::resource('books', 'BookController');
+    
+    
+    Route::get('/', [BookController::class, 'index']);
+    // Route::get('/show/{book}',[ArticleController::class, 'show'])->name('show');
+    // Route::get('/create/{book}',[ArticleController::class, 'create'])->name('create');
+    // Route::get('/store/{book}',[ArticleController::class, 'store'])->name('store');
+    // Route::get('/past/{book}',[ArticleController::class, 'past'])->name('past');
+// Route::get('/edit/{book}',[ArticleController::class, 'edit'])->name('edit');
 // Route::resource('articles', 'ArticleController');
+
+    Route::get('past', function () {
+        return view('book/past');
+    });
+
+    
+});
+// Auth::routes();
+// Route::get('/home', 'HomeController@index')->name('home');

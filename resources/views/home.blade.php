@@ -12,7 +12,7 @@
         </section>
         <div class="container">
             <p>
-                <a href="{{ url('/pastreview') }}" class="btn btn-secondary my-2">過去の投稿一覧</a>
+                <a href="{{ url('/past')}}" class="btn btn-secondary my-2">過去の投稿一覧</a>
                 <a href="{{ url('/nice') }}" class="btn btn-secondary my-2">過去のいいね一覧</a>
             </p>
         </div>
@@ -24,11 +24,11 @@
                     <div class="btn-group">
                         <div class="d-flex justify-content-between  align-items-center">
                             <div class="btn-group">
-                                <a href="{{ route('reviewall', ['book'=> $book['id']]) }}">
+                                <a href="{{ route('books.show', ['book'=> $book['id']] ) }}">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">レビューを見る</button>
                                 </a>
                             </div>
-                            <p class="text-center"><strong>{{ $book['title']}}<br>{{ $book['author'] }}</strong></p>
+                            <p class="m-2"><strong>{{ $book['title']}}<br>{{ $book['author'] }}</strong></p>
                         </div>
                     </div>
                 </div>

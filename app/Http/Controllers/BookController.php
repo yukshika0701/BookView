@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
 use App\Book;
+use Illuminate\Http\Request;
 use App\Http\Requests\CreateData;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Review;
 use InterventionImage;
 
-use Illuminate\Http\Request;
-
-class ArticleController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,30 +32,22 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Article $article)
+    public function create()
     {
-        // switch($book['genre']){
-        //     case(1):
-            //       $genre = 'ファンタジー';
-            //     break;
-            
-            //   }
-            // dd($_GET['article']);
-            
-            $book = new Book;
-            $books = $book->find($_GET['article']);
-            // dd($books);
-            return view('article/create', [
-                'book' => $books,
-            ]);
-        }
-        
-        /**
-         * Store a newly created resource in storage.
-         *
-         * @param  \Illuminate\Http\Request  $request
-         * @return \Illuminate\Http\Response
-         */
+        $book = new Book;
+        $books = $book->find($_GET['book']);
+        // dd($books);
+        return view('book/create', [
+            'book' => $books,
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $review = new Review();
@@ -70,48 +60,53 @@ class ArticleController extends Controller
         
         return view('complete');
     }
-    
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show(Book $book)
     {
-        
-        return view('article/show', [
-            'book' => $article,
+        // $book = new Book;
+        // $books = $book->find($book['id']);
+
+        // $books = $book->find($_GET['book']);
+        // dd($book);
+        $review = new Review;
+        // $review = $review->book_id;
+        $review = Auth::user()->review->where('book_id', $book->id);
+        // dd($review);
+        // $review = Review::where('book_id', $books)->get();
+        // $reviews = $review->find($_GET['review']);
+
+        // dd($review);
+        return view('book/show', [
+            'book' => $book,
+            'reviews' => $review,
         ]);
     }
-    // public function show(Review $review)
-    // {
-        //     return view('article/show', [
-            //         'review' => $review,
-            //     ]);
-            // }
-            
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit(Book $book)
     {
-        // return view('article/', [
-        //     'book' => $book,
-        // ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Article  $article
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, Book $book)
     {
         //
     }
@@ -119,10 +114,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy(Book $book)
     {
         //
     }
