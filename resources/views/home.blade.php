@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <section class="text-center container">
-            <div class="row py-lg-1">
+            <div class="row py-lg-3">
                 <div class="col-lg-4 col-md-5 mx-auto">
                 <h2 class="fw-light">HOME画面</h2>
             </div>
@@ -40,28 +40,9 @@
         <div class="side col-lg-3">
             <div class="border border-dark rounded my-4">
                 <p class="text-center">
-                    <a href="{{ url('/search')}}" class="btn btn-secondary my-2">検索</a>
+                    <a href="{{ url('/search')}}" class="btn btn-secondary my-2">作品を検索する</a>
                 </p>
-                <div class="input-group p-2">
-                    <input type="text" class="form-control" placeholder="キーワード入力欄">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                </svg>
-                            </button>
-                        </span>
-                </div> 
-                <div class="input-group p-2">  
-                    <input type="text" class="form-control" placeholder="ジャンル">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                </svg>
-                            </button>
-                        </span>
-                </div>
+
             </div>
             <div class="border border-dark rounded mb-4">
                 <p class="text-center">
@@ -78,9 +59,6 @@
                     </div>
                     <p class="text-right m-2">
                     <a href="{{ url('/')}}" class="btn btn-success"  onClick="return confirm('申請しますか？')">申請する</a>
-                    </p>
-                    <p class="text-right m-2">
-                    <a href="{{ url('/admin')}}" class="btn btn-danger">ログアウト</a>
                     </p>
                 </form>                
             </div>

@@ -22,7 +22,7 @@
 <body>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-success shadow-sm text-center">
-            <div class="container p-3 ">
+            <div class="container p-1 ">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <h1>{{ config('app.name', 'BookView') }}
                         BookView 

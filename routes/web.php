@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\NiceController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,8 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset/{token}', 'Auth\ResetPasswordController@reset');
 
+Route::get('/review/nice/{review}', 'NiceController@nice')->name('nice');
+Route::get('/review/unnice/{review}', 'NiceController@unnice')->name('unnice');
 
 Route::group(['middleware' => 'auth'], function() {
 
@@ -76,8 +80,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('past', function () {
         return view('book/past');
     });
+    Route::get('search', function () {
+        return view('search');
+    });
 
     
 });
 // Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
+

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Book;
+use App\Review;
+use App\Nice;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateData;
 use Illuminate\Support\Facades\Auth;
-use App\User;
-use App\Review;
 use InterventionImage;
 
 class BookController extends Controller
@@ -21,10 +22,25 @@ class BookController extends Controller
     {
         $book = new Book;
         $books = $book->all()->toArray();
-
+        // $review = new Review;
+        // $reviews = Auth::user()->review->where('book_id', $book->id);
+        // dd($reviews);
         return view('home', [
             'books' => $books,
-        ]);
+        ]); 
+        // return view('book/past', [
+        //     'book' => $books,
+        // ]); 
+
+        // 検索機能//
+        //Request $request  $keyword = $request->input('keyword');
+        //  $query = User::query();
+        //  if(!empty($keyword))
+        //  {
+        //    $query->where('name','like','%'.$keyword.'%')->orWhere('mail','like','%'.$keyword.'%');
+        //  }
+        //  $data = $query->orderBy('created_at','desc')->paginate(10);
+        // return view('search');
     }
 
     /**
@@ -67,27 +83,38 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show(Book $book, Review $review)
     {
-        // $book = new Book;
-        // $books = $book->find($book['id']);
-
-        // $books = $book->find($_GET['book']);
-        // dd($book);
         $review = new Review;
-        // $review = $review->book_id;
         $review = Auth::user()->review->where('book_id', $book->id);
         // dd($review);
         // $review = Review::where('book_id', $books)->get();
         // $reviews = $review->find($_GET['review']);
 
         // dd($review);
+        // $nice = Nice::where('review_id', $review->id)->where('user_id', auth()->user()->id)->first();
+        
+        // $culumns = ['book_id', 'user_id'];
+
+        // foreach($culumns as $culumn) {
+        //     $record->user_id = Auth::user()->id;
+        //     $record->review_id = $request->$culumn->id; 
+        // }
+        // $record->get();
+        // dd($record);
+        // return view('book/show', compact('book', 'nice'));
+        // dd($nice);
         return view('book/show', [
             'book' => $book,
             'reviews' => $review,
+            // 'nice' => $nice,
         ]);
+        // return view('book/past', [
+        //     'book' => $book,
+        //     // 'reviews' => $review,
+        // ]);
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *

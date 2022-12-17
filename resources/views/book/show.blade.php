@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <section class=" text-center container">
-            <div class="row py-lg-5">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                <h2 class="fw-light">レビュー一覧</h2>
+        <section class="text-center container">
+            <div class="row">
+                <div class="mx-auto">
+                <h4 class="fw-light">レビュー一覧</h2>
             </div>
         </section>
         <div class="column col-lg-4">
@@ -33,7 +33,7 @@
                 <div class="border border-dark rounded m-3">
                     <form>
                         <div>
-                            <label for="exampleInputEmail1" class="form-label h3 m-3"><strong>レビュー内容</strong></label>
+                            <label for="exampleInputEmail1" class="form-label m-3"><strong>レビュー内容</strong></label>
                             <div class="d-flex float-right">
                                 <p class="m-2">
                                     <a href="#" class="btn btn-danger">いいね数
@@ -46,9 +46,9 @@
                                     <a href="#" class="btn btn-danger">いいね!</a>
                                 </p>
                             </div>
-                            <h3>{{ $review['review']}}</h3>
+                            <h6 class="p-2">{{ $review['review']}}</h6>
                         </div>
-                        
+
                     </form>                
                 </div>
                 @endforeach
