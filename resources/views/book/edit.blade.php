@@ -11,7 +11,6 @@
         </section>
         <div class="column col-lg-4">
             <div class="col">
-                @foreach($books as $book)
                 <div class="card shadow-sm">
                     <img src="{{ asset('storage/app/'.$book['photo']) }}" height="300" width="260">                               
                     <div class="card-body">
@@ -23,20 +22,21 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
         </div>
         <div class="side col-lg-7">
             <div class="border border-dark rounded">
-                <form action="/books/{{$book->id}}" method="POST">
+                <form action="/reviews/{{$review->id}}" method="POST">
                     @method('PUT')
                     @csrf
-                    <div class="form-group">
-                    <label for="exampleFormControlTextarea1">レビュー内容</label>
-                    <textarea class="form-control"rows="5" name="review">{{$book->review}}</textarea>
+                    <div class="mb-3 border border-dark rounded">
+                        <label for="exampleFormControlTextarea1" class="form-label">レビュー内容</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="review">{{ ($review['review']) }}</textarea>
                     </div>
-                    <input type="submit" class="btn btn-primary" value="更新"/>
-                </form>
+                    <p class="text-right m-2">
+                        <button type='submit' class="btn btn-primary">編集</button>
+                    </p>
+                </form>     
             </div>
     </div>
 </div>

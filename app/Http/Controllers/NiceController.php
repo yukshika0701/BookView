@@ -2,26 +2,105 @@
 
 namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Review;
 use App\Nice;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use App\Book;
+use App\Http\Requests\CreateData;
+use InterventionImage;
+use Illuminate\Support\Collection; 
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class NiceController extends Controller
 {
     
-    public function nice(Review $review, Request $request){
-        $nice=New Nice();
-        $nice->review=$review->id;
-        $nice->user_id=Auth::user()->id;
-        $nice->save();
-        return back();
+    
+    
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
     }
-
-    public function unnice(Review $review, Request $request){
-        $user=Auth::user()->id;
-        $nice=Nice::where('review', $review->id)->where('user_id', $user)->first();
-        $nice->delete();
-        return back();
+    
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Nice  $nice
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Nice $nice)
+    {
+        // dd($nice);
+        // $book = new Book;
+        // $review = new Review;
+        // return view('book/show', [
+        //     'book' => $book,
+        //     'review' => $review,
+        // ]);
+    }
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Nice  $nice
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Nice $nice)
+    {
+        //
+    }
+    
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Nice  $nice
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Nice $nice)
+    {
+        //
+    }
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Nice  $nice
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Nice $nice)
+    {
+        //
+    }
+    
 }

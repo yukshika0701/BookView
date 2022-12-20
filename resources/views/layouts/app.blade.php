@@ -9,6 +9,9 @@
 
     <title>{{ config('app.name', 'BookView') }}</title>
 
+    <!--  jquary　-->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -20,6 +23,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    <div id='app'></div>
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-success shadow-sm text-center">
             <div class="container p-1 ">
@@ -47,9 +51,9 @@
                             });
                         </script>
                     @else
-                        <a class="my-navbar-item" href="{{ route('login') }}">ログイン</a>
+                        <!-- <a class="my-navbar-item" href="{{ route('login') }}">ログイン</a>
                         /
-                        <a class="my-navbar-item" href="{{ route('register') }}">会員登録</a>
+                        <a class="my-navbar-item" href="{{ route('register') }}">会員登録</a> -->
                     @endif
                 </div>
             </nav>

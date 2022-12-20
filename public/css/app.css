@@ -51,6 +51,21 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.example4{
+  display: block;
+  background: greenyellow;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.example4.click{
+  background: red;
+  color: #FFF;
+}
+
 article,
 aside,
 figcaption,

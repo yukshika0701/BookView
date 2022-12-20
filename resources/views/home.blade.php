@@ -12,8 +12,8 @@
         </section>
         <div class="container">
             <p>
-                <a href="{{ url('/past')}}" class="btn btn-secondary my-2">過去の投稿一覧</a>
-                <a href="{{ url('/nice') }}" class="btn btn-secondary my-2">過去のいいね一覧</a>
+                <a href="{{ route('past')}}" class="btn btn-secondary my-2">過去の投稿一覧</a>
+                <a href="{{ route('nicehistory') }}" class="btn btn-secondary my-2">過去のいいね一覧</a>
             </p>
         </div>
         <div class="column col-lg-9 album  d-flex justify-content-around">
@@ -34,15 +34,21 @@
                 </div>
                 @endforeach
             </div>
-            <!-- <img src="{{ asset('img/322203001170.png') }}" alt=""> -->
         </div>
 
         <div class="side col-lg-3">
-            <div class="border border-dark rounded my-4">
+            <div class="border border-dark rounded my-1 p-1">
                 <p class="text-center">
-                    <a href="{{ url('/search')}}" class="btn btn-secondary my-2">作品を検索する</a>
+                    <a href="{{ url('/search')}}" class="btn btn-secondary p-2">作品を検索する</a>
                 </p>
-
+                <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
+                <form class="form-inline" action="{{url('search')}}">
+                    <div class="form-group">
+                    <input type="text" name="keyword" value="" class="form-control" placeholder="キーワード入力欄">
+                    <input type="submit" value="検索" class="btn btn-info">
+                    </div>
+                    </form>
+                </div>
             </div>
             <div class="border border-dark rounded mb-4">
                 <p class="text-center">
@@ -50,12 +56,12 @@
                 </p>
                 <form>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">作品名</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <label for="exampleInputText1" class="form-label">作品名</label>
+                        <input type="text" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">作者名</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="exampleInputText1" class="form-label">作者名</label>
+                        <input type="text" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
                     </div>
                     <p class="text-right m-2">
                     <a href="{{ url('/')}}" class="btn btn-success"  onClick="return confirm('申請しますか？')">申請する</a>
