@@ -20,7 +20,7 @@
                             <p><strong>出版社　{{ $book['publisher'] }}</strong></p>
                             <p><strong>ジャンル　{{ $book['genre'] }}</strong></p>
                         </div>
-                        <a href="{{ route('books.create', ['book'=> $book['id']]) }}">
+                        <a href="{{ route('reviews.create', ['book'=> $book['id']]) }}">
                             <button type="button" class="btn btn-sm btn-outline-secondary">この作品をレビューする</button>
                         </a>
                     </div>

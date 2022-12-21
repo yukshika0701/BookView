@@ -25,30 +25,15 @@ class BookController extends Controller
         $book = new Book;
         $books = $book->all()->toArray();
         $nice = new Nice;
-        // $review = new Review;
-        // $reviews = Auth::user()->review->where('book_id', $book->id);
-        // dd($reviews);
-        // return view('book/past', [
-            //     'book' => $books,
-            // ]); 
-            
-            // 検索機能//
-            //Request $request  $keyword = $request->input('keyword');
-            //  $query = User::query();
-            //  if(!empty($keyword))
-        //  {
-        //    $query->where('name','like','%'.$keyword.'%')->orWhere('mail','like','%'.$keyword.'%');
-        //  }
-        //  $data = $query->orderBy('created_at','desc')->paginate(10);
-        // return view('search');
-        
-        // ユーザの投稿の一覧を作成日時の降順で取得
-        //withCount('テーブル名')とすることで、リレーションの数も取得できます。
         
         return view('home', [
             'books' => $books,
             'nice' => $nice,
         ]); 
+        // return view('addbook', [
+        //     'books' => $books,
+        //     'nice' => $nice,
+        // ]); 
     }
     
     
@@ -84,6 +69,12 @@ class BookController extends Controller
         //下記の記述でajaxに引数の値を返す
         return response()->json($json);
     }
+
+    public function addbook()
+    {
+        // dd($request);
+        
+    }
     
     /**
      * Show the form for creating a new resource.
@@ -92,12 +83,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $book = new Book;
-        $books = $book->find($_GET['book']);
-        // dd($books);
-        return view('book/create', [
-            'book' => $books,
-        ]);
+        // return view('/');
     }
     
     /**
@@ -108,15 +94,19 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $review = new Review();
-        // dd($review);
-        $review->review = $request->review;
-        $review->book_id = $request->book_id;
-        $review->user_id = Auth::user()->id;
-        // dd($review);
-        $review->save();
-        
-        return view('complete');
+        // dd($request);
+        // $book = new Book;
+        // $book->title = $request->title;
+        // $book->author = $request->author;
+        // // Book::whereNotIn('publisher', [$book], true);
+        // // $book->user_id = Auth::user()->id;
+    
+        // // dd($book);
+        // $book->save();
+        return view('/addbook', [
+            // 'book' => $book,
+        ]);
+
     }
     
     /**
@@ -167,6 +157,7 @@ class BookController extends Controller
      */
     public function edit(Book $book, Review $review)
     {
+        return view('form');
         // $book = new Book;
         // $books = $book->find($_GET['id']);
         // dd($book);
@@ -190,11 +181,11 @@ class BookController extends Controller
      */
     public function update(Request $request,Book $book)
     {
-        $review = Review::findOrFail($book);
-        $review->review = $request->review;
-        // dd($review);
-        Auth::user()->$review->save();
-        return view('editcomplete');
+        // $review = Review::findOrFail($book);
+        // $review->review = $request->review;
+        // // dd($review);
+        // Auth::user()->$review->save();
+        // return view('editcomplete');
         
     }
     

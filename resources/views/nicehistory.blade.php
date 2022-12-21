@@ -25,8 +25,8 @@
                         <h4 class="p-2"><strong>{{ $review['review']}}</strong></h4>                              
                     </div>
                 </div>
-            @endforeach
             </div>
+            @endforeach
         </div>
     </div>
 </div>

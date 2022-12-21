@@ -32,7 +32,12 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        $book = new Book;
+        $books = $book->find($_GET['book']);
+        // dd($books);
+        return view('book/create', [
+            'book' => $books,
+        ]);
     }
 
     /**
@@ -43,7 +48,15 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $review = new Review();
+        // dd($review);
+        $review->review = $request->review;
+        $review->book_id = $request->book_id;
+        $review->user_id = Auth::user()->id;
+        // dd($review);
+        $review->save();
+        
+        return view('complete');
     }
 
     /**

@@ -42,11 +42,11 @@
                     <a href="{{ url('/search')}}" class="btn btn-secondary p-2">作品を検索する</a>
                 </p>
                 <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
-                <form class="form-inline" action="{{url('search')}}">
-                    <div class="form-group">
-                    <input type="text" name="keyword" value="" class="form-control" placeholder="キーワード入力欄">
-                    <input type="submit" value="検索" class="btn btn-info">
-                    </div>
+                    <form class="form-inline" action="{{url('search')}}">
+                        <div class="form-group">
+                        <input type="text" name="keyword" value="" class="form-control" placeholder="キーワード入力欄">
+                        <input type="submit" value="検索" class="btn btn-info">
+                        </div>
                     </form>
                 </div>
             </div>
@@ -54,20 +54,23 @@
                 <p class="text-center">
                     <a href="#" class="btn btn-secondary my-2">作品申請</a>
                 </p>
-                <form>
-                    <div class="mb-3">
+                <form action="{{ route('books.store') }}" method="POST">
+                 @csrf
+                    <div class="m-2">
                         <label for="exampleInputText1" class="form-label">作品名</label>
-                        <input type="text" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+                        <input type="text" class="form-control" name="title">
                     </div>
-                    <div class="mb-3">
-                    <label for="exampleInputText1" class="form-label">作者名</label>
-                        <input type="text" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+                    <div class="m-2">
+                        <label for="exampleInputText1" class="form-label">作者名</label>
+                        <input type="text" class="form-control" name="author">
                     </div>
+
                     <p class="text-right m-2">
-                    <a href="{{ url('/')}}" class="btn btn-success"  onClick="return confirm('申請しますか？')">申請する</a>
+                    <input type="submit" value="申請する" class="btn btn-success">    
                     </p>
                 </form>                
             </div>
+        </div>
     </div>
 </div>
 @endsection

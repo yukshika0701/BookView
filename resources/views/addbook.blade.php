@@ -13,10 +13,12 @@
             <div class="col">
               <div class="card shadow-sm">
                 <div class="card-body">
+                    @foreach($book as $book)
                     <div class="d-inline justify-content-between align-items-center">
-                        <p><strong>作品名　「すずめの戸締り」</strong></p>
-                        <p><strong>作者名　新海誠</strong></p>
+                        <p><strong>作品名　$book['title']</strong></p>
+                        <p><strong>作者名　$book['author']</strong></p>
                     </div>
+                    @endforeach
                 </div>
               </div>
             </div>
@@ -25,8 +27,9 @@
             <div>
                 <div class="d-flex ">
                     <p class=" m-2">
-                        <a href="{{ url('approval')}}" class="btn btn-secondary">申請フォームへ
-                        </a>
+                    <form action="/books" method="POST">
+                        <input type="submit" value="申請フォームへ" class="btn btn-success">    
+                    </form>
                     </p>
                 </div>
                 

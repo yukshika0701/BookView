@@ -27,7 +27,7 @@
         <div class="side col-lg-7">
             <p class="text-danger">※は必須項目になります。</p>
             <div>
-                <form action="/books" method="POST">
+                <form action="/reviews" method="POST">
                     @csrf
                     <div class="mb-3 border border-dark rounded">
                         <label for="exampleFormControlTextarea1" class="form-label"><span class="text-danger">※</span>レビュー内容</label>

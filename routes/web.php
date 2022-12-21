@@ -18,7 +18,7 @@ use App\Http\Controllers\ReviewController;
 
 
 Auth::routes();
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestedit')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset/{token}', 'Auth\ResetPasswordController@reset');
@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function() {
     // Route::get('/edit', [BookController::class, 'edit'])->name('edit');
     Route::get('/search', [BookController::class, 'search'])->name('search');
     Route::get('/nicehistory', [ReviewController::class, 'nicehistory'])->name('nicehistory');
+    Route::get('/store', [BookController::class, 'store'])->name('addbook');
+    Route::get('/edit/{book}', [BookController::class, 'edit'])->name('form');
     // Route::get('/show/{book}',[ArticleController::class, 'show'])->name('show');
     // Route::get('/create/{book}',[ArticleController::class, 'create'])->name('create');
     // Route::get('/store/{book}',[ArticleController::class, 'store'])->name('store');

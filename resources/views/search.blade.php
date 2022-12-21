@@ -31,10 +31,9 @@
                 @endforeach
             </div>
         </div>
-        @else
+        @else()
         <section class=" text-center container">
             <div class="row py-lg-4">
-                <div class="col-lg-6 col-md-8 mx-auto">
                 <h2 class="fw-light">該当するキーワードはありません。</h2>
             </div>
         </section>
