@@ -9,31 +9,23 @@
                 <h2 class="fw-light">申請一覧</h2>
             </div>
         </section>
-        <div class="column col-lg-4">
-            <div class="col">
-              <div class="card shadow-sm">
-                <div class="card-body">
-                    @foreach($book as $book)
-                    <div class="d-inline justify-content-between align-items-center">
-                        <p><strong>作品名　$book['title']</strong></p>
-                        <p><strong>作者名　$book['author']</strong></p>
+        <div class="column">
+            <div class="d-flex">
+                @foreach($books as $book)
+                    <div class="col border border-dark rounded text-center m-2">
+                        <div class="card-body">
+                            <div class="d-inline justify-content-between align-items-center">
+                                <p><strong>作品名　{{ $book['title']}}</strong></p>
+                                <p><strong>作者名　{{ $book['author']}}</strong></p>
+                            </div>
+                            <a href="{{ route('books.edit', ['book'=> $book['id']]) }}">
+                                <button type="button" class="btn btn-success">申請フォームへ</button>
+                            </a>
+                        </div>
                     </div>
-                    @endforeach
-                </div>
-              </div>
+                @endforeach
             </div>
         </div>
-        <div class="side col-lg-7">
-            <div>
-                <div class="d-flex ">
-                    <p class=" m-2">
-                    <form action="/books" method="POST">
-                        <input type="submit" value="申請フォームへ" class="btn btn-success">    
-                    </form>
-                    </p>
-                </div>
-                
-            </div>
     </div>
 </div>
 

@@ -2,47 +2,102 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <section class=" text-center container">
-            <div class="row py-lg-5">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                <h2 class="fw-light">申請フォーム</h2>
-            </div>
-        </section>
-        <div class="column col-lg-4">
-            <div class="col">
-              <div class="card shadow-sm">
-                  <div class="card-body">
-                      <div class="d-inline justify-content-between align-items-center">
-                          <p><strong>作品名　$book['title']</strong></p>
-                          <p><strong>作者名　$book['author']</strong></p>
-                            <form action="/books/{{$book->id}}" method="POST">
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label"><strong>出版社</strong></label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <nav class="card mt-5">
+                <div class="card">
+                    <div class="card-header">申請フォーム</div>
+                    
+                    <div class="card-body">
+                        <form action="/books/{{$book->id}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">作品名</label>
+                                <div class="col-md-6">
+                                    <input id="title" type="title" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $book['title'] }} ">
+                                    
+                                    @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
-                                <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label"><strong>ジャンル</strong></label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
+
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="gender" class="col-md-4 col-form-label text-md-right">作者名</label>
+                                <div class="col-md-6">
+                                    <input id="author" type="author" class="form-control @error('author') is-invalid @enderror" name="author" value="{{ $book['author'] }}">
+                                    
+                                    @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
-                                <img src="{{ asset('storage/app/'.$book['photo']) }}" height="300" width="240">                               
-                            </form>
-                        </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="publisher" class="col-md-4 col-form-label text-md-right">出版社</label>
+                                
+                                <div class="col-md-6">
+                                    <input id="publisher" type="publisher" class="form-control @error('publisher') is-invalid @enderror" name="publisher" value="{{ old('publisher') }}">
+                                    
+                                    @error('publisher')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="genre" class="col-md-4 col-form-label text-md-right">ジャンル</label>
+                                <div class="col-md-6">
+                                    <select class="form-control select select-default" data-toggle="select" id="genre" name="genre">
+                                        <option value="1">ファンタジー</option>
+                                        <option value="2">ラブストーリー</option>
+                                        <option value="3">ミステリー</option>
+                                        <option value="4">サスペンス</option>
+                                        <option value="5">コメディ</option>
+                                        <option value="6">アクション</option>
+                                        <option value="7">SF</option>
+                                        <option value="8">ホラー</option>
+                                        <option value="9">古典</option>
+                                        <option value="10">児童文学</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="form-group row">
+                                <label for="photo" class="col-md-4 col-form-label text-md-right">画像</label>
+                                
+                                <div class="col-md-6">
+                                <input id="image" type="file" name="photo">
+                                    
+                                    @error('photo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4 text-right">
+                                    <button type="submit" class="btn btn-success">
+                                        承認
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>
+            </nav>
         </div>
-        <div class="side col-lg-7">
-            <div>
-                <div class="row">
-                    <p class=" m-2">
-                    <form action="/books" method="POST">
-                        <input type="submit" value="承認" class="btn btn-success">    
-                    </form>
-                    </p>
-                </div>
-                
-            </div>
     </div>
 </div>
 

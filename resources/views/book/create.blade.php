@@ -25,6 +25,11 @@
             </div>
         </div>
         <div class="side col-lg-7">
+        @error('review')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
             <p class="text-danger">※は必須項目になります。</p>
             <div>
                 <form action="/reviews" method="POST">

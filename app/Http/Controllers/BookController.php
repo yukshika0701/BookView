@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\Photo;
 use App\User;
 use App\Book;
 use App\Review;
@@ -23,13 +25,20 @@ class BookController extends Controller
     public function index()
     {
         $book = new Book;
-        $books = $book->all()->toArray();
+        $books = $book->all()->where('review_id', '!=', null)->toArray();
         $nice = new Nice;
-        
+        $photo = new Photo;
+        $photos = $photo->all()->toArray();
+        $id = Auth::user()->admin_flg;
+
+        // dd($id);
         return view('home', [
             'books' => $books,
             'nice' => $nice,
+            'photo' => $photos,
+            'id' => $id,
         ]); 
+
         // return view('addbook', [
         //     'books' => $books,
         //     'nice' => $nice,
@@ -95,18 +104,39 @@ class BookController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        // $book = new Book;
-        // $book->title = $request->title;
-        // $book->author = $request->author;
-        // // Book::whereNotIn('publisher', [$book], true);
-        // // $book->user_id = Auth::user()->id;
-    
-        // // dd($book);
-        // $book->save();
-        return view('/addbook', [
-            // 'book' => $book,
-        ]);
+        new User;
+        $id = Auth::user()->admin_flg;
+        $book = new Book;
 
+        $books = $book->all()->where('review_id',null);
+
+        // dd($id);
+        if($id == 1){
+            return view('/addbook', [
+                'books' => $books,
+            ]);
+        }else {
+            $book = new Book;
+            // $book->title = $request->title;
+            // $book->author = $request->author;
+            // $book->review_id = $request->id;
+            
+            $columns = ['title', 'author'];
+    
+            foreach($columns as $column) {
+                $book->$column = $request->$column;
+            }
+            $book->save();
+            
+            $books = $book->all()->where('review_id',null);
+            $bookhome = $book->all()->where('review_id', '!=', null)->toArray();
+            return view('home', [
+                'books' => $bookhome,
+            ]); 
+        
+        }
+
+    
     }
     
     /**
@@ -132,22 +162,6 @@ class BookController extends Controller
         
 
     }
-    public function past(Book $book, Review $review, User $user)
-    {
-        // dd($book);
-        $books = Auth::user()->review->where('review_id', $book->id);
-        // $books = Auth::user()->review->where('review_id', 0);
-        // $user = new User;
-        $review = new Review;
-        // $reviews = $review->all()->toArray();
-        $reviews = Auth::user()->review;
-        // dd($reviews);
-        return view('book/past', [
-            'book' => $books,
-            'reviews' => $reviews,
-            // 'nice' => $nice,
-        ]);
-    }
     
     /**
      * Show the form for editing the specified resource.
@@ -155,21 +169,11 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book, Review $review)
+    public function edit(Request $request,Book $book)
     {
-        return view('form');
-        // $book = new Book;
-        // $books = $book->find($_GET['id']);
-        // dd($book);
-        // dd($books);
-        // $review = new Review;
-        // $reviews = Auth::user()->review->where('book_id',$book->id);
-        // // $reviews = Auth::user()->review->pluck('id',$review);
-        // dd($reviews);
-        // return view('book/edit', [
-        //     'book' => $book,
-        //     'reviews' => $reviews,
-        // ]);
+        return view('/form', [
+            'book' => $book,
+        ]);
     }
 
     /**
@@ -181,11 +185,34 @@ class BookController extends Controller
      */
     public function update(Request $request,Book $book)
     {
-        // $review = Review::findOrFail($book);
-        // $review->review = $request->review;
-        // // dd($review);
-        // Auth::user()->$review->save();
-        // return view('editcomplete');
+        // $id = DB::table('books')->insertGetId(['id' => $book, ]);
+        // dd($id);
+        $columns = ['title', 'author', 'publisher', 'genre', 'photo'];
+        
+        foreach($columns as $column) {
+            $book->$column = $request->$column;
+        }
+        $book->review_id = $book->id;
+
+        $dir = 'img';
+        $file_name = $request->file('photo')->getClientOriginalName();
+        // dd($file_name);
+        // 取得したファイル名で保存
+        $request->file('photo')->storeAs('public/' . $dir, $file_name);
+        // ファイル情報をDBに保存
+        $photo = new Photo;
+        $photo->name = $file_name;
+        $app = 'app';
+        $photo->path = 'storage/' . $app . '/' . $file_name;
+        // dd($photo);
+        $photo->save();
+        $book->save();
+        // dd($book);
+        $books = $book->all()->where('review_id',null);
+
+        return view('/addbook',[
+            'books' => $books,
+        ]);
         
     }
     
@@ -199,6 +226,35 @@ class BookController extends Controller
     {
         //
     }
+
+    public function past(Book $book, Review $review, User $user)
+    {
+        // dd($book);
+        $books = Auth::user()->review->where('review_id', $book->id);
+        // $books = Auth::user()->review->where('review_id', 0);
+        // $user = new User;
+        $review = new Review;
+        $reviewall = $review->where('user_id', '!=', 9)->get();
+        $reviews = Auth::user()->review;
+        // dd($reviewall);
+        $id = Auth::user()->admin_flg;
+        if($id == 1){
+            return view('book/past', [
+                'book' => $books,
+                'reviews' => $reviewall,
+                'id' => $id,
+                // 'nice' => $nice,
+            ]);
+        }else{
+            return view('book/past', [
+                'book' => $books,
+                'reviews' => $reviews,
+                // 'nice' => $nice,
+            ]);
+        }
+
+    }
+
     public function search(Request $request, Book $book)
     {
         #キーワード受け取り
@@ -216,20 +272,24 @@ class BookController extends Controller
         }
         
         #ページネーション
-        $book = $query->orderBy('created_at','desc')->paginate(10);
-        
+        $book = $query->orderBy('created_at','desc')->paginate(6);
+        $books = $book->where('review_id', '!=', null);
+
+        $id = null;
         // dd($data);
         // return view('search')->with('data',$data)
         // ->with('keyword',$keyword)->with('message','ユーザーリスト');
+        // dd($books);
         if(!empty($keyword)){
             return view('search', [
-                'books' => $book,
+                'books' => $books,
                 'keyword' => $keyword,
                 // 'datas' => $data,
             ]);
         }else{
             return view('home', [
-                'books' => $book,
+                'books' => $books,
+                'id' => $id,
             ]);
         }
     }

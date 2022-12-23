@@ -10,7 +10,7 @@
                 <h4 class="fw-light">検索結果</h4>
             </div>
         </section>
-        @if(!empty($keyword))
+        @if(!($keyword == null))
         <div class="column album  d-flex justify-content-around">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
                 
@@ -31,8 +31,8 @@
                 @endforeach
             </div>
         </div>
-        @else()
-        <section class=" text-center container">
+        @else
+        <section class="text-center container">
             <div class="row py-lg-4">
                 <h2 class="fw-light">該当するキーワードはありません。</h2>
             </div>

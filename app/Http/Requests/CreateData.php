@@ -24,7 +24,8 @@ class CreateData extends FormRequest
     public function rules()
     {
         return [
-            'review' => 'max:100'
+
+            'review' => 'max:300'
         ];
     }
 }

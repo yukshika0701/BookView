@@ -46,7 +46,7 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateData $request)
     {
         $review = new Review();
         // dd($review);
@@ -123,34 +123,16 @@ class ReviewController extends Controller
     }
     public function nicehistory()
     {
-        // $reviewid = $review->nice('review_id');
-        // // dd($reviewid);
         $nice = new Nice;
         $review = new Review;
         // $reviews = $review->all('id','review')->where('review_id', $nice->id);
         // dd($reviews);
         $nices = $review->join('nices', 'reviews.id', '=', 'nices.review_id')->join('books', 'reviews.book_id', '=', 'books.id')->where('nices.user_id', '=', Auth::id())->get();
-        // dd($nices);
-        // $nicereview = $reviews->$nices->where('id', '=','review_id');
-        // dd($nicereview);
-        // // $books = Auth::user()->review->where('review_id', 0);
-        // // $user = new User;
-        // $review = new Review;
-        // // $reviews = $review->all()->toArray();
-        // // $reviews = Auth::user()->review;
-        // // dd($reviews);
-        // dd($reviews->book);
         return view('nicehistory', [
             // 'book' => $nices,
             'reviews' => $nices,
             // 'nice' => $nice,
-        ]);
-        // dd($request);
-        // $nice->review_id = Review::where('user_id', '=', Auth::id())->first()->id;
-        // $nices = User::with(['nice' => function ($query) {
-        //     $query->with('review');
-        // }])->find($request->review_id);
-        // return response()->json(['nices' => $nices], 200);
+        ]);;
     }
 
 }
