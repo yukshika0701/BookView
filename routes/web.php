@@ -25,9 +25,8 @@ Route::post('password/reset/{token}', 'Auth\ResetPasswordController@reset');
 
 Route::group(['middleware' => 'auth'], function() {
 
-    Route::resource('books', 'BookController');
-    Route::resource('reviews', 'ReviewController');
-    Route::resource('nices', 'NiceController');
+    Route::resource('books', 'BookController',['only' => ['index', 'store', 'show', 'edit', 'update']]);
+    Route::resource('reviews', 'ReviewController',['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
     
     
     Route::get('/', [BookController::class, 'index']);

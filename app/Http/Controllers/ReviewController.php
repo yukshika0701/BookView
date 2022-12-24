@@ -49,11 +49,9 @@ class ReviewController extends Controller
     public function store(CreateData $request)
     {
         $review = new Review();
-        // dd($review);
         $review->review = $request->review;
         $review->book_id = $request->book_id;
         $review->user_id = Auth::user()->id;
-        // dd($review);
         $review->save();
         
         return view('complete');
@@ -78,14 +76,6 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        // $book = new Book;
-        // $books = $book->find($_GET['id']);
-        // dd($book);
-        // dd($books);
-        // $review = new Review;
-        // $reviews = Auth::user()->review;
-        // $reviews = Auth::user()->review->pluck('id',$review);
-        // dd($review->book);
         return view('book/edit', [
             'book' => $review->book,
             'review' => $review,
@@ -101,12 +91,9 @@ class ReviewController extends Controller
      */
     public function update(CreateData $request, Review $review)
     {
-        // dd($review);
         $review->review = $request->review;
-        // dd($request->review);
         $review->save();
         return view('editcomplete');
-
     }
 
     /**
@@ -117,7 +104,6 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        // dd($review);
         $review->delete();
         return view('delete');
     }
@@ -125,14 +111,10 @@ class ReviewController extends Controller
     {
         $nice = new Nice;
         $review = new Review;
-        // $reviews = $review->all('id','review')->where('review_id', $nice->id);
-        // dd($reviews);
         $nices = $review->join('nices', 'reviews.id', '=', 'nices.review_id')->join('books', 'reviews.book_id', '=', 'books.id')->where('nices.user_id', '=', Auth::id())->get();
         return view('nicehistory', [
-            // 'book' => $nices,
             'reviews' => $nices,
-            // 'nice' => $nice,
-        ]);;
+        ]);
     }
 
 }

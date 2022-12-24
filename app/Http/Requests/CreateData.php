@@ -24,7 +24,6 @@ class CreateData extends FormRequest
     public function rules()
     {
         return [
-
             'review' => 'required',
         ];
     }
