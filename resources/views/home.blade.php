@@ -58,27 +58,27 @@
                 <form action="{{ route('books.store') }}" method="POST">
                  @csrf
                     @if($id == 1)
-                    <p class="m-2 text-center">
-                    <input type="submit" value="申請内容を確認する" class="btn btn-success">    
-                    </p>
-                    @else
-                    @error('title')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <div class="m-2">
-                        <label for="exampleInputText1" class="form-label">作品名</label>
-                        <input type="text" class="form-control" name="title">
-                    </div>
-                    @error('author')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <div class="m-2">
-                        <label for="exampleInputText1" class="form-label">作者名</label>
-                        <input type="text" class="form-control" name="author">
-                    </div>
-                    <p class="text-right m-2">
-                    <input type="submit" value="申請する" class="btn btn-success">    
-                    </p>
+                        <p class="m-2 text-center">
+                        <input type="submit" value="申請内容を確認する" class="btn btn-success">    
+                        </p>
+                        @else
+                        @error('title')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="m-2">
+                            <label for="exampleInputText1" class="form-label">作品名</label>
+                            <input type="text" class="form-control" name="title">
+                        </div>
+                        @error('author')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="m-2">
+                            <label for="exampleInputText1" class="form-label">作者名</label>
+                            <input type="text" class="form-control" name="author">
+                        </div>
+                        <p class="text-right m-2">
+                        <input type="submit" value="申請する" class="btn btn-success">    
+                        </p>
                     @endif
                 </form>                
             </div>

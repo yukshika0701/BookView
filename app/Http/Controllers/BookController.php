@@ -9,6 +9,7 @@ use App\Review;
 use App\Nice;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateData;
+use App\Http\Requests\Storebook;
 use Illuminate\Support\Facades\Auth;
 use InterventionImage;
 use Illuminate\Support\Collection; 
@@ -95,7 +96,7 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateData $request)
+    public function store(Storebook $request)
     {
         // dd($request);
         new User;
@@ -103,20 +104,20 @@ class BookController extends Controller
         $book = new Book;
 
         $books = $book->all()->where('approval_flg',0);
-        // dd($books);
+        // dd($book);
         // dd($id);
         if($id == 1){
             return view('/addbook', [
                 'books' => $books,
             ]);
-        }else {
+        }else{
             $book = new Book;
             // $book->title = $request->title;
             // $book->author = $request->author;
             // $book->review_id = $request->id;
             
             $columns = ['title', 'author'];
-    
+            
             foreach($columns as $column) {
                 $book->$column = $request->$column;
             }
@@ -149,7 +150,7 @@ class BookController extends Controller
         $reviews = Review::withcount('nice')->where('book_id', $book->id)->get();
         $nice = new Nice;
         // $nice_count = $nice->where('review_id', $review->id)->count();
-        // dd($book);        
+        // dd($reviews);        
         return view('book/show', [
             'book' => $book,
             'reviews' => $reviews,
@@ -252,7 +253,6 @@ class BookController extends Controller
                 'reviews' => $reviews,
                 'id' => $id,
                 'nice_model'=> $nice,
-                'reviewcounts' => $reviewcount,
 
 
                 // 'nice' => $nice,

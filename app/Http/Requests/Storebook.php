@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateData extends FormRequest
+class Storebook extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class CreateData extends FormRequest
     public function rules()
     {
         return [
-
-            'review' => 'required',
+            'title' => 'required',
+            'author' => 'required',
         ];
     }
 }
