@@ -21,7 +21,6 @@
                 @foreach($books as $book)
                 <div class="col">
                         <img src="{{ asset('storage/app/'.$book['photo']) }}" height="300" width="240">
-                        <img src="{{ asset('storage/app/') }}"height="300" width="240">                              
                     <div class="btn-group">
                         <div class="d-flex justify-content-between  align-items-center">
                             <div class="btn-group">
@@ -55,6 +54,7 @@
                 <p class="text-center">
                     <a href="" class="btn btn-secondary my-2">作品申請</a>
                 </p>
+                
                 <form action="{{ route('books.store') }}" method="POST">
                  @csrf
                     @if($id == 1)
@@ -62,10 +62,16 @@
                     <input type="submit" value="申請内容を確認する" class="btn btn-success">    
                     </p>
                     @else
+                    @error('title')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <div class="m-2">
                         <label for="exampleInputText1" class="form-label">作品名</label>
                         <input type="text" class="form-control" name="title">
                     </div>
+                    @error('author')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <div class="m-2">
                         <label for="exampleInputText1" class="form-label">作者名</label>
                         <input type="text" class="form-control" name="author">

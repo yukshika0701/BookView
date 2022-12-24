@@ -6,13 +6,8 @@
         <section class="text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                <h2 class="fw-light">編集が完了しました</h2>
-            </div>
-        </section>
-        <section class=" text-center container">
-            <div class="row py-lg-5">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                <h2 class="fw-light border border-dark rounded">いつも御高覧頂きありがとうございます<br>引き続きBookViewを<br>宜しくお願い致します。</h2>
+                    <h2 class="fw-light"><strong>編集が完了しました。<br>引き続きBookViewを<br>宜しくお願い致します。</strong></h2>
+                </div>
             </div>
         </section>
     </div>

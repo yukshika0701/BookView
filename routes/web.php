@@ -31,10 +31,8 @@ Route::group(['middleware' => 'auth'], function() {
     
     
     Route::get('/', [BookController::class, 'index']);
-    // Route::get('ajaxnice', 'BookController@ajaxnice');
     Route::post('/ajaxnice', [BookController::class, 'ajaxnice']);
     Route::get('/past', [BookController::class, 'past'])->name('past');
-    // Route::get('/edit', [BookController::class, 'edit'])->name('edit');
     Route::get('/search', [BookController::class, 'search'])->name('search');
     Route::get('/nicehistory', [ReviewController::class, 'nicehistory'])->name('nicehistory');
     Route::get('/store', [BookController::class, 'store'])->name('addbook');

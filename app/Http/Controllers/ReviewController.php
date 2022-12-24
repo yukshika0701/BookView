@@ -99,7 +99,7 @@ class ReviewController extends Controller
      * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(CreateData $request, Review $review)
     {
         // dd($review);
         $review->review = $request->review;

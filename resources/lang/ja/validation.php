@@ -146,9 +146,9 @@ return [
     */
 
     'attributes' => [
-        'amount' => '金額',
-        'date' =>  '日付',
-        'comment' => 'メモ',
+        'review' => 'レビュー',
+        'title' =>  '作品名',
+        'author' => '作家名',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'type_id' => 'カテゴリ',

@@ -13,12 +13,17 @@ class CreateReviewTable extends Migration
      */
     public function up()
     {
-        Schema::create('review', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->integer('book_id');
-            $table->string('review', '100');
+            $table->unsignedBigInteger('book_id');
+            $table->text('review');
             $table->timestamps();
+
+            $table->foreign('book_id') //外部キー
+              ->references('id') //参照先キー
+              ->on('books') //参照先テーブル
+              ->onDelete('cascade'); //参照テーブルカラムが消えたら同時に消す設定
         });
     }
 
@@ -29,6 +34,6 @@ class CreateReviewTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('review');
+        Schema::dropIfExists('reviews');
     }
 }

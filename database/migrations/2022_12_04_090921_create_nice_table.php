@@ -13,11 +13,16 @@ class CreateNiceTable extends Migration
      */
     public function up()
     {
-        Schema::create('nice', function (Blueprint $table) {
+        Schema::create('nices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->integer('review_id');
+            $table->unsignedBigInteger('review_id');
             $table->timestamps();
+
+            $table->foreign('review_id') //外部キー
+              ->references('id') //参照先キー
+              ->on('reviews') //参照先テーブル
+              ->onDelete('cascade'); //参照テーブルカラムが消えたら同時に消す設定
         });
     }
 
@@ -28,6 +33,6 @@ class CreateNiceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nice');
+        Schema::dropIfExists('nices');
     }
 }

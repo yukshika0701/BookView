@@ -25,7 +25,9 @@ class CreateData extends FormRequest
     {
         return [
 
-            'review' => 'max:300'
+            'review' => 'required',
+            'title' => 'required',
+            'author' => 'required',
         ];
     }
 }

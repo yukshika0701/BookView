@@ -13,13 +13,14 @@ class CreateBookTable extends Migration
      */
     public function up()
     {
-        Schema::create('book', function (Blueprint $table) {
+        Schema::create('books', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('author');
-            $table->string('publisher');
-            $table->tinyInteger('genre');
-            $table->integer('photo');
+            $table->string('publisher')->nullable();
+            $table->tinyInteger('genre')->nullable();
+            $table->binary('photo')->nullable();
+            $table->tinyInteger('approval_flg')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateBookTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book');
+        Schema::dropIfExists('books');
     }
 }
