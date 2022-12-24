@@ -96,7 +96,7 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storebook $request)
+    public function store(Request $request)
     {
         // dd($request);
         new User;

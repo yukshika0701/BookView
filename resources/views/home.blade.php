@@ -67,14 +67,14 @@
                         @enderror
                         <div class="m-2">
                             <label for="exampleInputText1" class="form-label">作品名</label>
-                            <input type="text" class="form-control" name="title">
+                            <input type="text" class="form-control" name="title" required>
                         </div>
                         @error('author')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="m-2">
                             <label for="exampleInputText1" class="form-label">作者名</label>
-                            <input type="text" class="form-control" name="author">
+                            <input type="text" class="form-control" name="author" required>
                         </div>
                         <p class="text-right m-2">
                         <input type="submit" value="申請する" class="btn btn-success">    
