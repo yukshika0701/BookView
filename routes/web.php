@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\NiceController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
 
 
 /*
@@ -32,7 +33,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/', [BookController::class, 'index']);
     Route::post('/ajaxnice', [BookController::class, 'ajaxnice']);
     Route::get('/past', [BookController::class, 'past'])->name('past');
-    Route::get('/search', [BookController::class, 'search'])->name('search');
+    Route::get('/search', [SearchController::class, 'search'])->name('search');
     Route::get('/nicehistory', [ReviewController::class, 'nicehistory'])->name('nicehistory');
     Route::get('/store', [BookController::class, 'store'])->name('addbook');
     Route::get('/update/{book}', [BookController::class, 'update'])->name('form');

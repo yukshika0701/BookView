@@ -43,7 +43,7 @@
                                 <label for="publisher" class="col-md-4 col-form-label text-md-right">出版社</label>
                                 
                                 <div class="col-md-6">
-                                    <input id="publisher" type="publisher" class="form-control @error('publisher') is-invalid @enderror" name="publisher" value="{{ old('publisher') }}">
+                                    <input id="publisher" type="publisher" class="form-control @error('publisher') is-invalid @enderror" name="publisher" value="{{ old('publisher') }}" required>
                                     
                                     @error('publisher')
                                     <span class="invalid-feedback" role="alert">
@@ -76,7 +76,7 @@
                                 <label for="photo" class="col-md-4 col-form-label text-md-right">画像</label>
                                 
                                 <div class="col-md-6">
-                                <input id="image" type="file" name="photo">
+                                <input id="image" type="file" name="photo" required>
                                     
                                     @error('photo')
                                     <span class="invalid-feedback" role="alert">

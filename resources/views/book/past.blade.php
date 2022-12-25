@@ -16,19 +16,19 @@
                     <p><strong>作品名 {{ $review->book['title'] }}</strong></p>
                 </div>
                 
-                <div class="d-flex text-right">
+                <div class="d-flex">
                 @if($id == 1)
-                    <p class="">
-                    <form action="{{route('reviews.destroy', $review->id)}}" method="post" class="float-right m-2">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" value="削除" class="btn btn-success" onclick='return confirm("削除しますか？");'>
-                    </form>
+                    <p class="m-2">
+                        <form action="{{route('reviews.destroy', $review->id)}}" method="post" class="">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" value="削除" class="btn btn-success" onclick='return confirm("削除しますか？");'>
+                        </form>
                     </p>
                     
-                    <p class="m-2">
-                            <span class="nicesCount btn btn-danger">いいね数{{$review->nice_count}}</span>                  
-                    </p>
+                    <div class="m-2">
+                        <span class="nicesCount btn-danger rounded  p-2">いいね数{{$review->nice_count}}</span>                  
+                    </div>
                 @else
 
                     <p class="m-2">
@@ -41,9 +41,9 @@
                         <input type="submit" value="削除" class="btn btn-success" onclick='return confirm("削除しますか？");'>
                     </form>
                     </p>
-                    <p class="m-2">
-                    <span class="nicesCount btn btn-danger">いいね数{{$review->nice_count}}</span>
-                    </p>
+                    <div class="m-2">
+                        <p class="nicesCount btn-danger rounded p-2">いいね数{{$review->nice_count}}</p>
+                    </div>
                     
                 @endif
                 </div>

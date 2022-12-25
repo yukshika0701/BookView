@@ -54,7 +54,7 @@ class ReviewController extends Controller
         $review->user_id = Auth::user()->id;
         $review->save();
         
-        return view('complete');
+        return redirect('/');
     }
 
     /**
@@ -93,7 +93,7 @@ class ReviewController extends Controller
     {
         $review->review = $request->review;
         $review->save();
-        return view('editcomplete');
+        return redirect('/');
     }
 
     /**
@@ -105,7 +105,7 @@ class ReviewController extends Controller
     public function destroy(Review $review)
     {
         $review->delete();
-        return view('delete');
+        return redirect('/');
     }
     public function nicehistory()
     {

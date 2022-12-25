@@ -37,10 +37,8 @@
         </div>
 
         <div class="side col-lg-3">
-            <div class="border border-dark rounded my-1 p-1">
-                <p class="text-center">
-                    <a href="{{ url('/search')}}" class="btn btn-secondary p-2">作品を検索する</a>
-                </p>
+            <div class="border border-dark rounded p-1">
+                <p class="text-center btn-secondary p-2">作品申請</p>
                 <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
                     <form class="form-inline" action="{{url('search')}}">
                         <div class="form-group">
@@ -50,10 +48,8 @@
                     </form>
                 </div>
             </div>
-            <div class="border border-dark rounded mb-4">
-                <p class="text-center">
-                    <a href="" class="btn btn-secondary my-2">作品申請</a>
-                </p>
+            <div class="border border-dark rounded p-1">
+                <p class="text-center btn-secondary p-2">作品申請</p>
                 
                 <form action="{{ route('books.store') }}" method="POST">
                  @csrf
@@ -61,24 +57,24 @@
                         <p class="m-2 text-center">
                         <input type="submit" value="申請内容を確認する" class="btn btn-success">    
                         </p>
-                        @else
-                        @error('title')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="m-2">
-                            <label for="exampleInputText1" class="form-label">作品名</label>
-                            <input type="text" class="form-control" name="title" required>
-                        </div>
-                        @error('author')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="m-2">
-                            <label for="exampleInputText1" class="form-label">作者名</label>
-                            <input type="text" class="form-control" name="author" required>
-                        </div>
-                        <p class="text-right m-2">
-                        <input type="submit" value="申請する" class="btn btn-success">    
-                        </p>
+                    @else
+                    @error('title')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <div class="m-2">
+                        <label for="exampleInputText1" class="form-label">作品名</label>
+                        <input type="text" class="form-control" name="title" required>
+                    </div>
+                    @error('author')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <div class="m-2">
+                        <label for="exampleInputText1" class="form-label">作者名</label>
+                        <input type="text" class="form-control" name="author" required>
+                    </div>
+                    <p class="text-right m-2">
+                    <input type="submit" value="申請する" class="btn btn-success">    
+                    </p>
                     @endif
                 </form>                
             </div>
