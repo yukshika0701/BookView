@@ -49,13 +49,13 @@
 
                                 @if($nice_model->nice_exist(Auth::user()->id,$review->id))
                                 <p class="favorite-marke m-2">
-                                <a class="js-nice-toggle loved btn example4" href="" data-reviewid="{{ $review->id }}"><i class="bi bi-heart"></i>いいね</a>
-                                    <span class="nicesCount btn-danger rounded p-2">いいね数{{$review->nice_count}}</span>
+                                    <a class="js-nice-toggle loved btn example4" href="" data-reviewid="{{ $review->id }}"><i class="bi bi-heart"></i>いいね</a>
+                                    <span class="nicesCount bg-danger text-white rounded p-2">いいね数{{$review->nice_count}}</span>
                                 </p>
                                 @else
                                 <p class="favorite-marke m-2">
                                 <a class="js-nice-toggle btn example4" href="" data-reviewid="{{ $review->id }}"><i class="bi bi-heart"></i>いいね</a>
-                                    <span class="nicesCount btn-danger rounded p-2">いいね数{{$review->nice_count}}</span>
+                                    <span class="nicesCount bg-danger text-white rounded p-2">いいね数{{$review->nice_count}}</span>
                                 </p>
                                 @endif
                                 

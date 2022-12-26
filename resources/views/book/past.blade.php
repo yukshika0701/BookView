@@ -27,7 +27,7 @@
                     </p>
                     
                     <div class="m-2">
-                        <span class="nicesCount btn-danger rounded  p-2">いいね数{{$review->nice_count}}</span>                  
+                        <span class="nicesCount bg-danger text-white rounded  p-2">いいね数{{$review->nice_count}}</span>                  
                     </div>
                 @else
 
@@ -42,7 +42,7 @@
                     </form>
                     </p>
                     <div class="m-2">
-                        <p class="nicesCount btn-danger rounded p-2">いいね数{{$review->nice_count}}</p>
+                        <p class="nicesCount bg-danger text-white rounded p-2">いいね数{{$review->nice_count}}</p>
                     </div>
                     
                 @endif
