@@ -38,7 +38,7 @@
 
         <div class="side col-lg-3">
             <div class="border border-dark rounded p-1">
-                <p class="text-center btn-secondary p-2">作品申請</p>
+                <p class="text-center btn-secondary p-2">検索</p>
                 <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
                     <form class="form-inline" action="{{url('search')}}">
                         <div class="form-group">
